@@ -1,5 +1,4 @@
 package org.example.turistguide_2.repository;
-import org.example.turistguide_2.TagsENUM;
 
 import org.example.turistguide_2.model.TouristAttraction;
 import org.springframework.stereotype.Repository;
@@ -10,7 +9,7 @@ import java.util.List;
 @Repository
 public class TouristRepository {
 
-    private List<TouristAttraction> attractions;
+    private final List<TouristAttraction> attractions;
 
     public TouristRepository() {
 
@@ -55,13 +54,5 @@ public class TouristRepository {
             }
         }
         return null;
-    }
-
-    public List<String> getTags() {
-        List<String> tags = new ArrayList<>();
-        for (TouristAttraction t : attractions) {
-            tags.addAll(t.getTags());
-        }
-        return tags;
     }
 }

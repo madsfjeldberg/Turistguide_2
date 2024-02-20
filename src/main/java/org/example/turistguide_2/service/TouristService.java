@@ -11,7 +11,7 @@ public class TouristService {
 
     TouristRepository repo;
 
-public TouristService(TouristRepository repo) {
+    public TouristService(TouristRepository repo) {
         this.repo = repo;
     }
 
@@ -33,9 +33,5 @@ public TouristService(TouristRepository repo) {
 
     public TouristAttraction deleteTouristAttraction(String attraction) {
         return repo.deleteAttraction(attraction);
-    }
-
-    public List<String> getTags() {
-        return repo.getTags();
     }
 }
