@@ -24,8 +24,8 @@
     </thead>
     <tbody>
     <tr th:each="attraction : ${attractions}">
-        <td th:text="${attraction.name}"/>
-        <td th:text="${attraction.description}"/>
+        <td th:text="${attraction.name}"></td>
+        <td th:text="${attraction.description}"></td>
         <td>
             <a th:href="@{/attractions/{name}/tags(name=${attraction.name})}" class="btn btn-primary">Tags</a>
         </td>
