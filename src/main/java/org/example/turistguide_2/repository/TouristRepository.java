@@ -40,6 +40,8 @@ public class TouristRepository {
         for (TouristAttraction t : attractions) {
             if (t.getName().equals(attraction.getName())) {
                 t.setDescription(attraction.getDescription());
+                t.setLocation(attraction.getLocation());
+                t.setTags(attraction.getTags());
                 return t;
             }
         }

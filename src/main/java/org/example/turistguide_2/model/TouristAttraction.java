@@ -1,17 +1,18 @@
 package org.example.turistguide_2.model;
 
 import java.util.List;
+import java.util.Objects;
 
 public class TouristAttraction {
 
     private String name;
-    private String city;
+    private String location;
     private String description;
     private List<String> tags;
 
-    public TouristAttraction(String name, String city, String description, List<String> tags) {
+    public TouristAttraction(String name, String location, String description, List<String> tags) {
         this.name = name;
-        this.city = city;
+        this.location = location;
         this.description = description;
         this.tags = tags;
     }
@@ -39,15 +40,31 @@ public class TouristAttraction {
         this.tags = tags;
     }
 
-    public String getCity() {
-        return city;
+    public String getLocation() {
+        return location;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public List<String> getTags() {
         return tags;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TouristAttraction that = (TouristAttraction) o;
+        return Objects.equals(name, that.name) &&
+                Objects.equals(location, that.location) &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(tags, that.tags);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, location, description, tags);
     }
 }

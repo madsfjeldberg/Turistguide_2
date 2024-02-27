@@ -28,15 +28,15 @@
 
     <form action="/attractions/update" th:object="${attraction}"  method="post">
         <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" th:value="${attraction.name}" readonly>
+        <input type="text" id="name" name="name" th:value="*{name}" readonly>
         <br>
         <label for="description">Description:</label>
         <br>
-        <textarea id="description" name="description" th:text="${attraction.description}"></textarea>
+        <textarea id="description" name="description" th:text="*{description}"></textarea>
         <br><br>
-        <label for="city">City:</label>
+        <label for="location">Location:</label>
         <br>
-        <input type="text" id="city" name="city" th:value="${attraction.city}">
+        <input type="text" id="location" name="location" th:value="*{location}">
         <br><br>
         <p>Tags:</p>
         <div th:each="tag : ${tags}">
