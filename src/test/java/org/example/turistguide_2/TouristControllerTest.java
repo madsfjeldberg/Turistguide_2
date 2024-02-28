@@ -49,5 +49,19 @@ public class TouristControllerTest {
                         .andExpect(view().name("edit"));
     }
 
+    @Test
+    void getAttraction() throws Exception {
+        mockMvc.perform(get("/attractions/Eiffel Tower"))
+                        .andExpect(status().isOk())
+                        .andExpect(view().name("attraction"));
+    }
+
+    @Test
+    void saveAttraction() throws Exception {
+        mockMvc.perform(get("/attractions/save"))
+                        .andExpect(status().isOk())
+                        .andExpect(view().name("redirect:/attractions"));
+    }
+
     
 }
