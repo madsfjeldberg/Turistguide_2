@@ -26,6 +26,4 @@ class TuristGuide2ApplicationTests {
         assertThat(service).isNotNull();
     }
 
-
-
 }
