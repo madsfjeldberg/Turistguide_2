@@ -12,6 +12,8 @@ import java.util.List;
 @Repository
 public class TouristRepositorySQL {
 
+     private Connection conn;
+
     @Value("${spring.datasource.url}")
     private String url;
 
@@ -23,16 +25,12 @@ public class TouristRepositorySQL {
 
     public TouristRepositorySQL() throws SQLException {
 
-        try (Connection conn = DriverManager.getConnection(url, username, password)) {
-            if (conn != null) {
-                System.out.println("Connecting...");
-                System.out.println("Driver name is: " + conn.getMetaData());
-                System.out.println("Connection established.");
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+        conn = DriverManager.getConnection(url, username, password);
+        if (conn != null) {
+            System.out.println("Connecting...");
+            System.out.println("Driver name is: " + conn.getMetaData());
+            System.out.println("Connection established.");
         }
-
     }
 
     public List<TouristAttraction> getAttractions() {
