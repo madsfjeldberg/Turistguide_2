@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository
-public class TouristRepository {
+public class TouristRepositorySQL {
 
     @Value("${spring.datasource.url}")
     private String url;
@@ -21,7 +21,7 @@ public class TouristRepository {
     @Value("${spring.datasource.password}")
     private String password;
 
-    public TouristRepository() throws SQLException {
+    public TouristRepositorySQL() throws SQLException {
 
         try (Connection conn = DriverManager.getConnection(url, username, password)) {
             if (conn != null) {
@@ -36,37 +36,22 @@ public class TouristRepository {
     }
 
     public List<TouristAttraction> getAttractions() {
-        return attractions;
+        return null;
     }
 
     public TouristAttraction getAttraction(String name) {
-        return attractions.stream().filter(t -> t.getName().equals(name)).findFirst().orElse(null);
+        return null;
     }
 
     public TouristAttraction addAttraction(TouristAttraction attraction) {
-        attractions.add(attraction);
         return attraction;
     }
 
     public TouristAttraction updateAttraction(TouristAttraction attraction) {
-        for (TouristAttraction t : attractions) {
-            if (t.getName().equals(attraction.getName())) {
-                t.setDescription(attraction.getDescription());
-                t.setLocation(attraction.getLocation());
-                t.setTags(attraction.getTags());
-                return t;
-            }
-        }
         return null;
     }
 
     public TouristAttraction deleteAttraction(String attraction) {
-        for (TouristAttraction t : attractions) {
-            if (t.getName().equals(attraction)) {
-                attractions.remove(t);
-                return t;
-            }
-        }
         return null;
     }
 }
