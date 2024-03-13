@@ -4,15 +4,12 @@ import org.example.turistguide_2.model.TouristAttraction;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 @Repository
 public class TouristRepositorySQL {
 
-     private Connection conn;
 
     @Value("${spring.datasource.url}")
     private String url;
@@ -23,18 +20,18 @@ public class TouristRepositorySQL {
     @Value("${spring.datasource.password}")
     private String password;
 
-    public TouristRepositorySQL() throws SQLException {
-
-        conn = DriverManager.getConnection(url, username, password);
-        if (conn != null) {
-            System.out.println("Connecting...");
-            System.out.println("Driver name is: " + conn.getMetaData());
-            System.out.println("Connection established.");
-        }
-    }
-
     public List<TouristAttraction> getAttractions() {
-        return null;
+        try (Connection conn = DriverManager.getConnection(url, username, password)) {
+            String sql = "SELECT * FROM tourist_attraction";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                System.out.println(rs.getString("name"));
+            }
+            return null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public TouristAttraction getAttraction(String name) {
