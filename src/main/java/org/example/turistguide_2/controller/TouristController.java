@@ -1,8 +1,8 @@
 package org.example.turistguide_2.controller;
 
 import org.example.turistguide_2.model.TouristAttraction;
-import org.example.turistguide_2.repository.TouristRepository;
 import org.example.turistguide_2.service.TouristService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,13 @@ import java.util.List;
 @RequestMapping(path = "attractions")
 public class TouristController {
 
-    private final TouristService service = new TouristService(new TouristRepository());
+    private final TouristService service;
+
+    @Autowired
+    public TouristController(TouristService service) {
+        this.service = service;
+    }
+
 
     @GetMapping
     public String getTouristAttractions(Model model) {
@@ -54,7 +60,7 @@ public class TouristController {
 
     @GetMapping(path = "{name}/edit")
     public String editAttraction(@PathVariable String name, Model model) {
-        List<String> tags = Arrays.asList("Historical", "Free", "Nature", "Art", "Food", "Architecture");
+        List<String> tags = service.getTags();
         model.addAttribute("tags", tags);
         TouristAttraction attraction = service.getAttraction(name);
         model.addAttribute("attraction", attraction);

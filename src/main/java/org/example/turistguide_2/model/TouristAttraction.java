@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public class TouristAttraction {
 
+    private int pid;
     private String name;
     private String location;
     private String description;
@@ -18,6 +19,14 @@ public class TouristAttraction {
     }
 
     public TouristAttraction() {
+    }
+
+    public int getPid() {
+        return pid;
+    }
+
+    public void setPid(int pid) {
+        this.pid = pid;
     }
 
     public void setName(String name) {
@@ -66,5 +75,16 @@ public class TouristAttraction {
     @Override
     public int hashCode() {
         return Objects.hash(name, location, description, tags);
+    }
+
+    @Override
+    public String toString() {
+        return "TouristAttraction{" +
+                "pid=" + pid +
+                ", name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", description='" + description + '\'' +
+                ", tags=" + tags +
+                '}';
     }
 }

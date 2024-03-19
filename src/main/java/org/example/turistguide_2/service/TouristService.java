@@ -1,7 +1,8 @@
 package org.example.turistguide_2.service;
 
 import org.example.turistguide_2.model.TouristAttraction;
-import org.example.turistguide_2.repository.TouristRepository;
+import org.example.turistguide_2.repository.TouristRepositorySQL;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,29 +10,34 @@ import java.util.List;
 @Service
 public class TouristService {
 
-    TouristRepository repo;
+    private final TouristRepositorySQL repository;
 
-    public TouristService(TouristRepository repo) {
-        this.repo = repo;
+    @Autowired
+    public TouristService(TouristRepositorySQL repository) {
+        this.repository = repository;
     }
 
     public TouristAttraction getAttraction(String name) {
-        return repo.getAttraction(name);
+        return repository.getAttraction(name);
     }
 
     public List<TouristAttraction> getTouristAttractions() {
-        return repo.getAttractions();
+        return repository.getAttractions();
     }
 
     public void addTouristAttraction(TouristAttraction attraction) {
-        repo.addAttraction(attraction);
+        repository.addAttraction(attraction);
     }
 
     public void updateTouristAttraction(TouristAttraction attraction) {
-        repo.updateAttraction(attraction);
+        repository.updateAttraction(attraction);
     }
 
     public void deleteTouristAttraction(String attraction) {
-        repo.deleteAttraction(attraction);
+        repository.deleteAttraction(attraction);
+    }
+
+    public List<String> getTags() {
+        return repository.getTags();
     }
 }
