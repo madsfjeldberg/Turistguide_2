@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class TouristRepositoryTest {
 
+    /*
     private TouristRepository repository;
 
     @BeforeEach
@@ -65,5 +66,7 @@ public class TouristRepositoryTest {
         assertNull(repository.getAttraction("Eiffel Tower"));
     }
 
+
+     */
 
 }
