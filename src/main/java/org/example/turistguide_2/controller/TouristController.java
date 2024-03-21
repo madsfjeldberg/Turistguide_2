@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -43,7 +42,7 @@ public class TouristController {
 
     @GetMapping(path = "add")
     public String addAttraction(Model model) {
-        List<String> tags = Arrays.asList("Historical", "Free", "Nature", "Art", "Food", "Architecture");
+        List<String> tags = service.getTags();
         model.addAttribute("tags", tags);
         model.addAttribute("attraction", new TouristAttraction());
         return "add";
