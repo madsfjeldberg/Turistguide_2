@@ -69,8 +69,7 @@ public class TouristRepositorySQL {
                 String tagValue = rs.getString("value"); // hvis attraction allerede findes, tilføjes der kun tagValue til attraction.
                 if (tagValue != null) {
                     attraction.getTags().add(tagValue);
-            }
-
+                }
             }
 
         } catch (SQLException e) {
